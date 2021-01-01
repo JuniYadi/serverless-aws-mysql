@@ -132,8 +132,78 @@ app.get('/user/:id', async(req: Request, res: Response, next: NextFunction) => {
     // get parameter
     const { id } = req.params
 
-    // query to database
+    // find data by id
     const user = await User.findByPk(id)
+
+    // throw error if data not found
+    if(!user) {
+      throw new Error('Data Not Found.!');
+    }
+
+    // return response
+    res.status(200).json({
+      code: 200,
+      success: true,
+      message: 'success',
+      data: user
+    })
+  } catch (e) {
+    next(e)
+  }
+})
+
+// Update Data by ID
+app.patch('/user/:id', async(req: Request, res: Response, next: NextFunction) => {
+  try {
+    // get parameter
+    const { id } = req.params
+
+    // get input name only
+    const { name } = req.body
+
+    // find data by id
+    const user = await User.findByPk(id)
+
+    // throw error if data not found
+    if(!user) {
+      throw new Error('Data Not Found.!');
+    }
+
+    // update data
+    user.name = name;
+
+    // save
+    await user.save();
+
+    // return response
+    res.status(200).json({
+      code: 200,
+      success: true,
+      message: 'success',
+      data: user
+    })
+  } catch (e) {
+    next(e)
+  }
+})
+
+
+// Update Data by ID
+app.delete('/user/:id', async(req: Request, res: Response, next: NextFunction) => {
+  try {
+    // get parameter
+    const { id } = req.params
+
+    // find data by id
+    const user = await User.findByPk(id)
+
+    // throw error if data not found
+    if(!user) {
+      throw new Error('Data Not Found.!');
+    }
+
+    // delete data
+    await user.destroy();
 
     // return response
     res.status(200).json({

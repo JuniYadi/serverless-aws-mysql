@@ -20,7 +20,9 @@ const serverlessConfiguration: Serverless = {
     name: 'aws',
     runtime: 'nodejs12.x',
     region: 'ap-southeast-1',
+    memorySize: 256,
     apiGateway: {
+      shouldStartNameWithService: true,
       minimumCompressionSize: 1024,
     },
     environment: {

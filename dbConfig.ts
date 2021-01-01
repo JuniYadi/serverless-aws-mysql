@@ -9,27 +9,33 @@ const db = new Sequelize({
     username: 'root',
     password: 'example',
     database: 'sls_aws',
+    dialectOptions: {
+        // useUTC: false, //for reading from database
+        dateStrings: true,
+        typeCast: true,
+        timezone: "+07:00"
+    },
     timezone: '+07:00',
     pool: {
-        max: 5,
+        max: 1,
         min: 0,
         acquire: 3000,
         idle: 1000
     }
 });
 
-const initConnection = async () => {
-    try {
-        // connect to database
-        await db.sync();
-        await db.authenticate();
+// const initConnection = async () => {
+//     try {
+//         // connect to database
+//         await db.sync();
+//         await db.authenticate();
+//
+//         // print message connected
+//         // console.log('Connection has been established successfully.');
+//     } catch (error) {
+//         // print error message if not connected
+//         console.error('Unable to connect to the database:', error);
+//     }
+// }
 
-        // print message connected
-        // console.log('Connection has been established successfully.');
-    } catch (error) {
-        // print error message if not connected
-        console.error('Unable to connect to the database:', error);
-    }
-}
-
-export default initConnection;
+export default db;

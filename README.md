@@ -1,4 +1,9 @@
-[toc]
+- [Serverless AWS MySQL](#serverless-aws-mysql)
+  - [Stack](#stack)
+  - [Route with Middleware](#route-with-middleware)
+  - [How to Use](#how-to-use)
+    - [Install](#install)
+    - [Run](#run)
 
 # Serverless AWS MySQL
 

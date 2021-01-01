@@ -39,6 +39,7 @@ User.init(
         email: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
         password: {
             type: DataTypes.STRING,
@@ -46,7 +47,7 @@ User.init(
         }
     },
     {
-        tableName: "users",
+        tableName: "Users",
         sequelize: db, // passing the `sequelize` instance is required
         defaultScope: {
           attributes: {

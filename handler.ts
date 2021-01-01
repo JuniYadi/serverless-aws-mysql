@@ -58,7 +58,12 @@ const validate = (req: Request, res: Response, next: NextFunction) => {
 // Index Data
 app.get('/user', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAndCountAll({
+      order:  [
+          ['id', 'asc']
+      ],
+      limit: 10
+    });
 
     res.status(200).json({
       code: 200,
@@ -122,7 +127,7 @@ app.post('/user', userInputValidate(), validate, async (req: Request, res: Respo
 })
 
 // Show Data by ID
-app.get('/user/{id}', async(req: Request, res: Response, next: NextFunction) => {
+app.get('/user/:id', async(req: Request, res: Response, next: NextFunction) => {
   try {
     // get parameter
     const { id } = req.params

@@ -1,12 +1,7 @@
 import type { Serverless } from 'serverless/aws';
 
 const serverlessConfiguration: Serverless = {
-  service: {
-    name: 'serverless-aws-mysql',
-    // app and org for use with dashboard.serverless.com
-    // app: your-app-name,
-    // org: your-org-name,
-  },
+  service: 'serverless-aws-mysql',
   frameworkVersion: '2',
   custom: {
     webpack: {

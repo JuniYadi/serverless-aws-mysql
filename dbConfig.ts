@@ -1,7 +1,9 @@
 import { Sequelize } from 'sequelize';
+import * as mysql2 from 'mysql2'
 
 const db = new Sequelize({
     dialect: 'mysql',
+    dialectModule: mysql2, // fixed issue with webpack
     host: '127.0.0.1',
     port: 3306,
     username: 'root',
@@ -18,15 +20,16 @@ const db = new Sequelize({
 
 const initConnection = async () => {
     try {
+        // connect to database
+        await db.sync();
         await db.authenticate();
-        console.log('Connection has been established successfully.');
+
+        // print message connected
+        // console.log('Connection has been established successfully.');
     } catch (error) {
+        // print error message if not connected
         console.error('Unable to connect to the database:', error);
     }
 }
 
-initConnection()
-    .then(res => console.log(res))
-    .catch(err => console.error(err));
-
-export default db;
+export default initConnection;

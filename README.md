@@ -1,10 +1,41 @@
+[toc]
+
 # Serverless AWS MySQL
 
 ## Stack
 
-- NodeJS
+- NodeJS 
+- TypeScript
 - Serverless Framework
 - Serverless HTTP
-- MySQL
+- Sequelize (MySQL)
 - ExpressJS
-- TypeScript
+    - Helmet
+    - Express Validator
+- JSON Web Token
+
+## Route with Middleware
+| Type | Path | Token |
+| ---- | ---- | ----- |
+| POST | `/auth/register` | No |
+| POST | `/auth/login`| No |
+| GET | `/me` | Yes |
+| GET | `/user` | No |
+| POST | `/user` | No |
+| GET | `/user/:id` | No |
+| PATCH | `/user/:id` | No |
+| DELETE | `/user/:id` | No |
+
+## How to Use
+
+### Install
+
+```bash
+yarn install
+```
+
+### Run
+
+```bash
+yarn dev
+```
